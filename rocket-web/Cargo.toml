@@ -1,10 +1,19 @@
 [package]
 edition = "2018"
-name = "chapter4"
+name = "our_application"
 version = "0.1.0"
 
 [dependencies]
-rocket = {path = "../../../rocket/core/lib/"}
+chrono = "0.4"
+rocket = {path = "../../../rocket/core/lib/", features = ["uuid"]}
 rocket_db_pools = {path = "../../../rocket/contrib/db_pools/lib/", features = ["sqlx_postgres"]}
-sqlx = {version = "0.5.7", features = ["postgres", "uuid", "runtime-tokio-rustls"]}
+sqlx = {version = "0.5.9", features = ["postgres", "uuid", "runtime-tokio-rustls", "chrono"]}
 uuid = {version = "0.8.2", features = ["v4"]}
+
+[[bin]]
+name = "our_application"
+path = "src/main.rs"
+
+[lib]
+name = "our_application"
+path = "src/lib.rs"
