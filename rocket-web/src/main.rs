@@ -125,10 +125,10 @@ fn users(name_grade: NameGrade, filters: Option<Filters>) -> Result<NewUser, Sta
             }
         })
         .collect();
-    if users.len() > 0 {
-        Ok(NewUser(users))
-    } else {
+    if users.is_empty() {
         Err(Status::Forbidden)
+    } else {
+        Ok(NewUser(users))
     }
 }
 
@@ -139,12 +139,12 @@ async fn favicon() -> NamedFile {
 
 #[catch(404)]
 fn not_found(req: &Request) -> String {
-    format!("There's no page {}.", req.uri())
+    format!("We cannot find this page {}.", req.uri())
 }
 
 #[catch(403)]
 fn forbidden(req: &Request) -> String {
-    format!("We don't know how to handle this request {}.", req.uri())
+    format!("Access forbidden {}.", req.uri())
 }
 
 #[launch]

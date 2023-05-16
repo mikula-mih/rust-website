@@ -1,7 +1,9 @@
 debug/
 target/
 Cargo.lock
+Rocket.toml
+main
 **/*.rs.bk
 *.pdb
-main
 .DS_Store
+.envrc
